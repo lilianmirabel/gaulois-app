@@ -12,5 +12,13 @@ const layoutprops = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  containerMatchs: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
 });
 export default layoutprops;

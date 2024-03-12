@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -19,16 +19,16 @@ const TabNavigator = () => (
         let iconName;
 
         if (route.name === "Players") {
-          iconName = focused ? "home" : "home";
+          iconName = focused ? "football-helmet" : "football-helmet";
           size = focused ? 25 : 25;
           color = focused ? "#fecb00" : "#808080";
           color.name = "#808080";
         } else if (route.name === "Matchs") {
-          iconName = focused ? "film" : "film";
+          iconName = focused ? "football" : "football";
           color = focused ? "#fecb00" : "#808080";
           size = focused ? 25 : 25;
         } else if (route.name === "Gaulois") {
-          iconName = focused ? "information" : "information";
+          iconName = focused ? "alpha-g-box-outline" : "alpha-g-box-outline";
           color = focused ? "#fecb00" : "#808080";
           size = focused ? 25 : 25;
         } //else if (route.name === "Note") {
@@ -37,7 +37,9 @@ const TabNavigator = () => (
         //   size = focused ? 25 : 25;
         // }
 
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return (
+          <MaterialCommunityIcons name={iconName} size={size} color={color} />
+        );
       },
       tabBarLabelStyle: ({ focused }) => ({
         color: focused ? "#fecb00" : "#808080",
