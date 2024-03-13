@@ -12,6 +12,17 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/College Block.otf.otf",
+            "./assets/fonts/Kadwa.ttf"
+          ]
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },

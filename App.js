@@ -4,12 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet } from "react-native";
 import Header from "./Components/Header";
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-
 import Gaulois from "./Screens/Gaulois";
 import Matchs from "./Screens/Matchs";
 import Players from "./Screens/Players";
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
   <Tab.Navigator

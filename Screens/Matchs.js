@@ -1,86 +1,77 @@
+import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
-import { Dimensions, Image, Text, View } from "react-native";
-import layoutprops from "../Styles/LayoutProps";
+import { FlatList, StyleSheet, View } from "react-native";
+import Match from "../Components/match";
 
 const Matchs = ({ navigation }) => {
-  const [matchData, setMatchData] = useState(null);
+  const [matchData, setMatchData] = useState([]);
+
+  const [fontsLoaded] = useFonts({
+    CollegeBlock: require("../assets/fonts/College Block.otf"),
+    Kadwa: require("../assets/fonts/Kadwa.ttf"),
+  });
 
   useEffect(() => {
-    const fetchMatchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost/gaulois-api/public/api/getMatch/1"
-        );
-        const data = await response.json();
-        setMatchData(data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données :", error);
-      }
-    };
-
-    fetchMatchData();
+    getMatchs();
   }, []);
 
-  const backgroundColor =
-    matchData && matchData.point_gaulois > matchData.point_adverse
-      ? "#2ECC71"
-      : "#EF233C";
-
-  const screenWidth = Dimensions.get("window").width;
-  const imageWidth = screenWidth * 0.15;
-  const separatorWidth = screenWidth * 0.26;
+  const getMatchs = () => {
+    fetch("http://localhost/gaulois-api/public/api/getAllMatchs")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (response) {
+        setMatchData(response);
+      })
+      .catch(function (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      });
+  };
 
   return (
-    <View style={layoutprops.containerMatchs}>
-      {matchData && (
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: screenWidth * 0.1,
-            backgroundColor: backgroundColor,
-            borderWidth: screenWidth * 0.005,
-          }}
-        >
-          <Image
-            style={{
-              width: imageWidth,
-              height: imageWidth,
-              borderRadius: imageWidth * 0.5,
-              borderWidth: screenWidth * 0.005,
-              padding: screenWidth * 0.001,
-              backgroundColor: "#FFF",
-            }}
-            resizeMode="contain"
-            source={require("../assets/images/gaulois-lg.png")}
-          />
-          <View style={{ flexDirection: "column" }}>
-            <Text
-              style={{
-                marginHorizontal: screenWidth * 0.02,
-                paddingHorizontal: screenWidth * 0.1,
-              }}
+    <View style={styles.container}>
+      <FlatList
+        data={matchData}
+        vertical
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => item.id_match.toString()}
+        renderItem={({ item, index }) => {
+          return (
+            <View
+              style={
+                index !== matchData.length - 1
+                  ? styles.matchContainerWithMargin
+                  : styles.matchContainer
+              }
             >
-              {matchData.point_gaulois} - {matchData.point_adverse}
-            </Text>
-          </View>
-          <Image
-            style={{
-              width: imageWidth,
-              height: imageWidth,
-              borderRadius: imageWidth * 0.5,
-              borderWidth: screenWidth * 0.005,
-              padding: screenWidth * 0.01,
-              backgroundColor: "#FFF",
-            }}
-            resizeMode="contain"
-            source={{ uri: matchData.logo_equipe }}
-          />
-        </View>
-      )}
+              <Match
+                id_match={item.id_match}
+                point_gaulois={item.point_gaulois}
+                point_adverse={item.point_adverse}
+                logo_adverse={item.logo_equipe}
+                lieu={item.lieu}
+              />
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  matchContainer: {
+    marginBottom: 0,
+  },
+  matchContainerWithMargin: {
+    marginBottom: 30,
+  },
+});
 
 export default Matchs;
