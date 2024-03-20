@@ -1,6 +1,6 @@
 import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Match from "../Components/match";
 
 const Matchs = ({ navigation }) => {
@@ -37,21 +37,27 @@ const Matchs = ({ navigation }) => {
         keyExtractor={(item, index) => item.id_match.toString()}
         renderItem={({ item, index }) => {
           return (
-            <View
-              style={
-                index !== matchData.length - 1
-                  ? styles.matchContainerWithMargin
-                  : styles.matchContainer
+            <Pressable
+              onPress={() =>
+                navigation.navigate("MatchDetail", { item: item.id_match })
               }
             >
-              <Match
-                id_match={item.id_match}
-                point_gaulois={item.point_gaulois}
-                point_adverse={item.point_adverse}
-                logo_adverse={item.logo_equipe}
-                lieu={item.lieu}
-              />
-            </View>
+              <View
+                style={
+                  index !== matchData.length - 1
+                    ? styles.matchContainerWithMargin
+                    : styles.matchContainer
+                }
+              >
+                <Match
+                  id_match={item.id_match}
+                  point_gaulois={item.point_gaulois}
+                  point_adverse={item.point_adverse}
+                  logo_adverse={item.logo_equipe}
+                  lieu={item.lieu}
+                />
+              </View>
+            </Pressable>
           );
         }}
       />

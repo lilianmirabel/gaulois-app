@@ -1,13 +1,12 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet } from "react-native";
+import React from "react";
 import Header from "./Components/Header";
 import Gaulois from "./Screens/Gaulois";
 import Matchs from "./Screens/Matchs";
 import Players from "./Screens/Players";
-const Stack = createStackNavigator();
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
@@ -30,11 +29,7 @@ const TabNavigator = () => (
           iconName = focused ? "alpha-g-box-outline" : "alpha-g-box-outline";
           color = focused ? "#fecb00" : "#808080";
           size = focused ? 25 : 25;
-        } //else if (route.name === "Note") {
-        //   iconName = focused ? "star" : "star";
-        //   color = focused ? "#fecb00" : "#808080";
-        //   size = focused ? 25 : 25;
-        // }
+        }
 
         return (
           <MaterialCommunityIcons name={iconName} size={size} color={color} />
@@ -50,11 +45,6 @@ const TabNavigator = () => (
       component={Players}
       options={{ title: "Players", header: () => <Header title="JOUEUR" /> }}
     />
-    {/* <Tab.Screen
-      name="Matchs"
-      component={StackNavigator}
-      options={{ title: "Matchs", header: () => <Header title="Matchs" /> }}
-    /> */}
     <Tab.Screen
       name="Matchs"
       component={Matchs}
@@ -78,12 +68,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

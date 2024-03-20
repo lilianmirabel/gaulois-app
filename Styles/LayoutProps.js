@@ -20,5 +20,12 @@ const layoutprops = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
+  containerPlayers: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
 });
 export default layoutprops;
