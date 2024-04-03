@@ -17,10 +17,10 @@ const Tab = createBottomTabNavigator();
 const StackNavigatorMatch = () => (
   <Stack.Navigator initialRouteName="Matchs">
     <Stack.Screen name="Matchs" component={Matchs} options={({ route }) => ({
-      headerShown: false
+      headerShown: false, 
     })} />
     <Stack.Screen name="MatchDetail" component={MatchDetail} options={({ route }) => ({
-      headerShown: false
+      headerShown: false, headerTitle: false
     })} />
   </Stack.Navigator>
 );

@@ -1,6 +1,6 @@
-import { useRoute } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import { StyleSheet, Text, View, TouchableOpacity, Linking, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 
 const MatchDetail = ({ navigation }) => {
@@ -18,7 +18,8 @@ const MatchDetail = ({ navigation }) => {
     getMatch();
   }, []);
 
-  
+  const screenWidth = Dimensions.get("window").width;
+
   const getMatch = () => {
     fetch("http://localhost/gaulois-api/public/api/getMatch/"+item)
       .then(response => response.json())
@@ -31,22 +32,40 @@ const MatchDetail = ({ navigation }) => {
       });
   };
 
+  const handleRediffusionPress = () => {
+    if (matchData && matchData.rediffusion) {
+      Linking.openURL(matchData.rediffusion);
+    }
+  };
+
   if (!fontsLoaded) {
     return null;
   }
 
   if (!matchData) {
-    return <Text>Chargement...</Text>;
+    return <Text>Chargement des données en cours</Text>;
   }
 
   return (
-    <View>
-      <Text>{matchData.nom}</Text>
-      <Text>{matchData.score}</Text>
+    <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
+      <TouchableOpacity onPress={handleRediffusionPress}>
+        <View style={{ backgroundColor: "#F3722C",
+          paddingHorizontal: screenWidth * 0.23,
+          paddingVertical: screenWidth * 0.03,
+          borderRadius: 25,
+           alignItems: "center",
+           justifyContent: "center" }}>
+          <Text style={{ color: "white", fontWeight: "bold", fontSize: 33, fontFamily: "CollegeBlock",}}>REDIFFUSION
+          </Text>
+        </View>
+      </TouchableOpacity>
+      <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>{matchData.date_match}</Text>
+      <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>{matchData.lieu}</Text>
+      <Text style={{ color: "#F3722C", fontWeight: "bold", fontSize: 33, fontFamily: "CollegeBlock",}}>STATISTIQUES</Text>
+      <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>Touché : {matchData.total_touchdowns}</Text>
+      <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>Plaquage : {matchData.total_plaquages}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default MatchDetail;
