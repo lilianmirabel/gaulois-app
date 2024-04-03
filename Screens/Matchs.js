@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Match from "../Components/match";
+import MatchDetail from "./MatchDetail";
 
 const Matchs = ({ navigation }) => {
   const [matchData, setMatchData] = useState([]);
@@ -39,7 +40,7 @@ const Matchs = ({ navigation }) => {
           return (
             <Pressable
               onPress={() =>
-                navigation.navigate("MatchDetail", { item: item.id_match })
+                navigation.navigate('MatchDetail', { item: item.id_match })
               }
             >
               <View

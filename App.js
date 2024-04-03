@@ -1,13 +1,41 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import Header from "./Components/Header";
+import AppStack from "./AppStack";
 import Gaulois from "./Screens/Gaulois";
 import Matchs from "./Screens/Matchs";
+import MatchDetail from "./Screens/MatchDetail";
 import Players from "./Screens/Players";
+import PlayerDetail from "./Screens/PlayerDetail";
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const StackNavigatorMatch = () => (
+  <Stack.Navigator initialRouteName="Matchs">
+    <Stack.Screen name="Matchs" component={Matchs} options={({ route }) => ({
+      headerShown: false
+    })} />
+    <Stack.Screen name="MatchDetail" component={MatchDetail} options={({ route }) => ({
+      headerShown: false
+    })} />
+  </Stack.Navigator>
+);
+
+const StackNavigatorPlayer = () => (
+  <Stack.Navigator initialRouteName="Matchs">
+    <Stack.Screen name="Players" component={Players} options={({ route }) => ({
+      headerShown: false
+    })} />
+    <Stack.Screen name="PlayerDetail" component={PlayerDetail} options={({ route })  => ({
+      headerShown: false
+    })} />
+  </Stack.Navigator>
+);
+
 
 const TabNavigator = () => (
   <Tab.Navigator
@@ -42,12 +70,12 @@ const TabNavigator = () => (
   >
     <Tab.Screen
       name="Players"
-      component={Players}
+      component={StackNavigatorPlayer}
       options={{ title: "Players", header: () => <Header title="JOUEUR" /> }}
     />
     <Tab.Screen
       name="Matchs"
-      component={Matchs}
+      component={StackNavigatorMatch}
       options={{
         title: "Matchs",
         header: () => <Header title="MATCH" />,

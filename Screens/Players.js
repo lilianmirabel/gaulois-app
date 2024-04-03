@@ -1,7 +1,8 @@
 import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View,Pressable } from "react-native";
 import Player from "../Components/Player";
+import PlayerDetail from "./PlayerDetail.js";
 
 const Players = ({ navigation }) => {
   const [playerData, setplayerData] = useState([]);
@@ -37,6 +38,11 @@ const Players = ({ navigation }) => {
         keyExtractor={(item, index) => item.id_joueur.toString()}
         renderItem={({ item, index }) => {
           return (
+            <Pressable
+            onPress={() =>
+              navigation.navigate('PlayerDetail', { item: item.id_joueur })
+            }
+          >
             <View
               style={
                 index !== playerData.length - 1
@@ -51,6 +57,7 @@ const Players = ({ navigation }) => {
                 image={item.photo_detoure}
               />
             </View>
+            </Pressable>
           );
         }}
       />

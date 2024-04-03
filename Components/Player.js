@@ -14,7 +14,7 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
   const imageWidth = screenWidth * 0.15;
 
   return (
-    <View style={layoutprops.containerPlayers}>
+    <View style={{ ...layoutprops.containerPlayers}}>
       <View
         style={{
           flexDirection: "row",
@@ -22,7 +22,7 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
           borderRadius: screenWidth * 0.1,
           borderWidth: screenWidth * 0.005,
           backgroundColor: "#D9D9D9",
-          height: screenHeight * 0.1,
+          height: screenHeight * 0.15,
           width: screenWidth * 1,
         }}
       >
@@ -35,22 +35,24 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
         >
           <Text
             style={{
-              fontSize: screenWidth * 0.1,
+              fontSize: screenWidth * 0.08,
               fontFamily: "Kadwa",
-              marginLeft: 25,
-              marginRight: 25,
+              marginLeft: screenWidth * 0.05,
+              marginRight: screenWidth * 0.05,
+              borderRadius: imageWidth * 0.5,
             }}
           >
             {numero}
           </Text>
         </View>
         <View
-          style={{ flexDirection: "column", marginLeft: 20, marginRight: 20 }}
+          style={{ flexDirection: "column", marginLeft: 20, marginRight: 20, left: screenWidth * 0.1,}}
         >
           <Text
             style={{
               fontSize: screenWidth * 0.05,
               fontFamily: "Kadwa",
+              top: screenWidth * 0.05,
             }}
           >
             {prenom}
@@ -69,6 +71,7 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
             width: imageWidth * 1.5,
             height: imageWidth * 2,
             bottom: 20,
+            left: screenWidth * 0.3,
           }}
           source={{ uri: image }}
         />
