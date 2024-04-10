@@ -1,11 +1,14 @@
 import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
+import { useRoute } from "@react-navigation/native";
 import { FlatList, Pressable, StyleSheet, View, ActivityIndicator } from "react-native";
 import Match from "../Components/match";
-import MatchDetail from "./MatchDetail";
 import Header from "../Components/Header";
 
 const Matchs = ({ navigation }) => {
+  const route = useRoute();
+  const { item, joueur } = route.params;
+
   const [matchData, setMatchData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +22,7 @@ const Matchs = ({ navigation }) => {
   }, []);
 
   const getMatchs = () => {
-    fetch("http://localhost/gaulois-api/public/api/getAllMatchs")
+    fetch("http://localhost/gaulois-api/public/api/getMatchJouerParJoueur/"+item)
       .then(function (response) {
         return response.json();
       })
@@ -43,7 +46,7 @@ const Matchs = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Header title="matchs" />
+      <Header title="matchs joues" /> 
       <FlatList
         data={matchData}
         vertical
@@ -51,11 +54,7 @@ const Matchs = ({ navigation }) => {
         keyExtractor={(item, index) => item.id_match.toString()}
         renderItem={({ item, index }) => {
           return (
-            <Pressable
-              onPress={() =>
-                navigation.navigate('MatchDetail', { item: item.id_match })
-              }
-            >
+            
               <View
                 style={
                   index !== matchData.length - 1
@@ -63,6 +62,11 @@ const Matchs = ({ navigation }) => {
                     : styles.matchContainer
                 }
               >
+              <Pressable
+              onPress={() =>
+               console.log("Match joue : ", item.id_match, joueur)
+              }
+            >
                 <Match
                   id_match={item.id_match}
                   point_gaulois={item.point_gaulois}
@@ -70,8 +74,8 @@ const Matchs = ({ navigation }) => {
                   logo_adverse={item.logo_equipe}
                   lieu={item.lieu}
                 />
+                </Pressable>
               </View>
-            </Pressable>
           );
         }}
       />

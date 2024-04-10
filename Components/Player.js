@@ -14,64 +14,66 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
   const imageWidth = screenWidth * 0.15;
 
   return (
-    <View style={{ ...layoutprops.containerPlayers}}>
+    <View style={{ ...layoutprops.containerPlayers }}>
       <View
         style={{
           flexDirection: "row",
+          justifyContent: "space-between", // Ajustement pour placer les éléments aux extrémités
           alignItems: "center",
-          borderRadius: screenWidth * 0.1,
+          paddingHorizontal: screenWidth * 0.05, // Ajustement de l'espacement horizontal
+          paddingVertical: screenWidth * 0.02, // Ajustement de l'espacement vertical
+          borderRadius: screenWidth * 0.1, // Ajustement du bord arrondi
           borderWidth: screenWidth * 0.005,
           backgroundColor: "#D9D9D9",
-          height: screenHeight * 0.15,
-          width: screenWidth * 1,
         }}
       >
-        <View
-          style={{
-            borderRadius: 50,
-            borderWidth: 2,
-            backgroundColor: "#FFF",
-          }}
-        >
-          <Text
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View
             style={{
-              fontSize: screenWidth * 0.08,
-              fontFamily: "Kadwa",
-              marginLeft: screenWidth * 0.05,
-              marginRight: screenWidth * 0.05,
-              borderRadius: imageWidth * 0.5,
+              borderRadius: 100,
+              borderWidth: 2,
+              backgroundColor: "#FFF",
             }}
           >
-            {numero}
-          </Text>
-        </View>
-        <View
-          style={{ flexDirection: "column", marginLeft: 20, marginRight: 20, left: screenWidth * 0.1,}}
-        >
-          <Text
+            <Text
+              style={{
+                fontSize: screenWidth * 0.08,
+                fontFamily: "Kadwa",
+                paddingHorizontal: screenWidth * 0.04, // Ajustement de l'espacement
+                paddingVertical: screenWidth * 0.02, // Ajustement de l'espacement
+              }}
+            >
+              {numero}
+            </Text>
+          </View>
+          <View
             style={{
-              fontSize: screenWidth * 0.05,
-              fontFamily: "Kadwa",
-              top: screenWidth * 0.05,
+              flexDirection: "column",
+              marginLeft: screenWidth * 0.03, // Ajustement de l'espacement
             }}
           >
-            {prenom}
-          </Text>
-          <Text
-            style={{
-              fontSize: screenWidth * 0.05,
-              fontFamily: "Kadwa",
-            }}
-          >
-            {nom}
-          </Text>
+            <Text
+              style={{
+                fontSize: screenWidth * 0.05,
+                fontFamily: "Kadwa",
+              }}
+            >
+              {prenom}
+            </Text>
+            <Text
+              style={{
+                fontSize: screenWidth * 0.05,
+                fontFamily: "Kadwa",
+              }}
+            >
+              {nom}
+            </Text>
+          </View>
         </View>
         <Image
           style={{
             width: imageWidth * 1.5,
             height: imageWidth * 2,
-            bottom: 20,
-            left: screenWidth * 0.3,
           }}
           source={{ uri: image }}
         />

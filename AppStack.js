@@ -6,6 +6,7 @@ import Matchs from "./Screens/Matchs";
 import App from "./App";
 import Players from "./Screens/Players";
 import PlayerDetail from "./Screens/PlayerDetail";
+import MatchJoue from "./Screens/MatchJoue";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ function AppStack() {
         <Stack.Screen name="MatchDetail" component={MatchDetail} />
         <Stack.Screen name="Players" component={Players} />
         <Stack.Screen name="PlayerDetail" component={PlayerDetail} />
+        <Stack.Screen name="MatchJoue" component={MatchJoue} />
       </Stack.Navigator>
     </NavigationContainer>
   );
