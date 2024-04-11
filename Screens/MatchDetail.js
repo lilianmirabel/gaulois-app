@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
-import { StyleSheet, Text, View, TouchableOpacity, Linking, Dimensions, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Linking, Dimensions, ActivityIndicator, Image } from "react-native";
 import { useFonts } from "expo-font";
 import Header from "../Components/Header";
 
@@ -56,10 +56,32 @@ const MatchDetail = ({ navigation }) => {
 
   // Détermine le titre en fonction des points des Gaulois
   const title = matchData.point_gaulois > matchData.point_adverse ? "Victoire" : "Defaite";
+  // Détermine la couleur de fond en fonction du résultat du match
+  const viewColor = matchData.point_gaulois > matchData.point_adverse ? "#2ECC71" : "#EF233C";
+
+  // Détermine la source du logo de l'équipe adverse et Gaulois en fonction du résultat du match
+  const logoAdverse = matchData.point_gaulois > matchData.point_adverse ? matchData.logo_equipe : require('../assets/images/gaulois-lg.png');
+  const logoGaulois = matchData.point_gaulois > matchData.point_adverse ? require('../assets/images/gaulois-lg.png') : matchData.logo_equipe;
 
   return (
-    <View style={{ flex: 1 }}> {/* Assurez-vous que la vue principale a flex: 1 */}
-      <Header title={title} /> {/* Utilisation du titre déterminé */}
+    <View style={{ flex: 1 }}>
+      {/* Header avec la couleur de fond et le texte */}
+      <Header title={title} textColor="black" viewColor={viewColor} />
+      {/* Vue avec la couleur de fond de l'header et le score au milieu */}
+      <View style={[styles.headerView, { backgroundColor: viewColor }]}>
+        <View style={styles.scoreContainer}>
+          {/* Logo équipe Gaulois */}
+          <View style={styles.teamLogo}>
+            <Image source={logoGaulois} style={styles.teamLogoImage} />
+          </View>
+          {/* Scores */}
+          <Text style={styles.scoreText}>{matchData.point_gaulois} - {matchData.point_adverse}</Text>
+          {/* Logo équipe adverse */}
+          <View style={styles.teamLogo}>
+            <Image source={logoAdverse} style={styles.teamLogoImage} />
+          </View>
+        </View>
+      </View>
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <TouchableOpacity onPress={handleRediffusionPress}>
           <View style={{ backgroundColor: "#F3722C",
@@ -83,3 +105,40 @@ const MatchDetail = ({ navigation }) => {
 };
 
 export default MatchDetail;
+
+const styles = StyleSheet.create({
+  headerView: {
+    backgroundColor: "#2ECC71",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 110, 
+    borderBottomLeftRadius:30,
+    borderBottomRightRadius:30,
+  },
+  scoreContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  scoreText: {
+    color: "white",
+    fontSize: 45,
+    fontFamily: "Kadwa",
+    marginRight: 10,
+  },
+  teamLogo: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: "black",
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  teamLogoImage: {
+    width: 40,
+    height: 40,
+  },
+});
