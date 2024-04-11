@@ -82,7 +82,7 @@ const MatchDetail = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <View style={{ alignItems: "center", justifyContent: "center", padding: 20 }}>
         <TouchableOpacity onPress={handleRediffusionPress}>
           <View style={{ backgroundColor: "#F3722C",
             paddingHorizontal: screenWidth * 0.23,
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 110, 
-    borderBottomLeftRadius:30,
-    borderBottomRightRadius:30,
+    borderBottomLeftRadius:25,
+    borderBottomRightRadius:25,
   },
   scoreContainer: {
     flexDirection: "row",
