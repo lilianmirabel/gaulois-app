@@ -25,6 +25,7 @@ const Matchs = ({ navigation }) => {
       })
       .then(function (response) {
         setMatchData(response);
+        console.log(response);
         setLoading(false);
       })
       .catch(function (error) {
