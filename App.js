@@ -64,7 +64,7 @@ const TabNavigator = () => (
           color = focused ? "#fecb00" : "#808080";
           size = focused ? 25 : 25;
         } else if (route.name === "Gaulois") {
-          iconName = focused ? "alpha-g-box-outline" : "alpha-g-box-outline";
+          iconName = focused ? "shopping" : "shopping";
           color = focused ? "#fecb00" : "#808080";
           size = focused ? 25 : 25;
         }
@@ -93,7 +93,7 @@ const TabNavigator = () => (
     <Tab.Screen
       name="Gaulois"
       component={Gaulois}
-      options={{ title: "Gaulois", header: () => <Header title="GAULOIS" /> }}
+      options={{ title: "Gaulois", header: () => <Header title="BOUTIQUE" /> }}
     />
   </Tab.Navigator>
 );

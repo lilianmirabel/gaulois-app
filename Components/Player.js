@@ -10,54 +10,54 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
   });
 
   const screenWidth = Dimensions.get("window").width;
-  const screenHeight = Dimensions.get("window").height;
   const imageWidth = screenWidth * 0.15;
+  const cardWidth = screenWidth * 0.9; 
+  const cardHeight = screenWidth * 0.3;
 
   return (
     <View style={{ ...layoutprops.containerPlayers }}>
       <View
         style={{
+          width: cardWidth,
+          height: cardHeight,
           flexDirection: "row",
-          justifyContent: "space-between", // Ajustement pour placer les éléments aux extrémités
+          justifyContent: "space-between",
           alignItems: "center",
-          paddingHorizontal: screenWidth * 0.05, // Ajustement de l'espacement horizontal
-          paddingVertical: screenWidth * 0.02, // Ajustement de l'espacement vertical
-          borderRadius: screenWidth * 0.1, // Ajustement du bord arrondi
+          paddingHorizontal: screenWidth * 0.05,
+          paddingVertical: screenWidth * 0.02,
+          borderRadius: screenWidth * 0.05,
           borderWidth: screenWidth * 0.005,
           backgroundColor: "#D9D9D9",
-        }}
-      >
+          position: "relative", 
+        }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View
             style={{
               borderRadius: 100,
               borderWidth: 2,
               backgroundColor: "#FFF",
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: screenWidth * 0.08,
                 fontFamily: "Kadwa",
-                paddingHorizontal: screenWidth * 0.04, // Ajustement de l'espacement
-                paddingVertical: screenWidth * 0.02, // Ajustement de l'espacement
-              }}
-            >
+                paddingHorizontal: screenWidth * 0.04,
+                paddingVertical: screenWidth * 0.02,
+              }}>
               {numero}
             </Text>
           </View>
           <View
             style={{
               flexDirection: "column",
-              marginLeft: screenWidth * 0.03, // Ajustement de l'espacement
-            }}
-          >
+              marginLeft: screenWidth * 0.03,
+              paddingVertical: screenWidth * 0.01,
+            }}>
             <Text
               style={{
                 fontSize: screenWidth * 0.05,
                 fontFamily: "Kadwa",
-              }}
-            >
+              }}>
               {prenom}
             </Text>
             <Text
@@ -72,11 +72,13 @@ const Player = ({ numero, nom, prenom, image, id_joueur }) => {
         </View>
         <Image
           style={{
-            width: imageWidth * 1.5,
-            height: imageWidth * 2,
+            width: imageWidth * 1.2, 
+            height: imageWidth * 1.8,
+            position: "absolute", 
+            bottom: 0, 
+            right: screenWidth * 0.05,
           }}
-          source={{ uri: image }}
-        />
+          source={{ uri: image }}/>
       </View>
     </View>
   );

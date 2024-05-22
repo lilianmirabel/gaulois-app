@@ -47,7 +47,15 @@ const PlayerDetail = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title={`${playerData.prenom} ${playerData.nom}`} /> 
+      {playerData && (
+        <Header
+          title={
+            playerData.prenom.length + playerData.nom.length > 15
+              ? `${playerData.prenom}...`
+              : `${playerData.prenom} ${playerData.nom}`
+          }
+        />
+      )}
       <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
         <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>Match présent : {playerData.nombre_de_matchs}</Text>
         <Text style={{ fontSize: 25, fontFamily: "Kadwa",}}>Position : {playerData.pos}</Text>
@@ -65,10 +73,9 @@ const PlayerDetail = ({ navigation }) => {
             paddingHorizontal: screenWidth * 0.10,
             paddingVertical: screenWidth * 0.01,
             borderRadius: 25,
-             alignItems: "center",
-             justifyContent: "center" }}>
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 33, fontFamily: "CollegeBlock",}}>STATISTIQUES
-            </Text>
+            alignItems: "center",
+            justifyContent: "center" }}>
+            <Text style={{ color: "white", fontWeight: "bold", fontSize: 33, fontFamily: "CollegeBlock",}}>STATISTIQUES</Text>
           </View>
         </Pressable>
       </View>
