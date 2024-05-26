@@ -11,6 +11,7 @@ import MatchDetail from "./Screens/MatchDetail";
 import Players from "./Screens/Players";
 import PlayerDetail from "./Screens/PlayerDetail";
 import MatchJoue from "./Screens/MatchJoue";
+import StatistiqueDetail from "./Screens/StatistiqueDetail";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,11 +37,14 @@ const StackNavigatorPlayer = () => (
   name="PlayerDetail"
   component={PlayerDetail}
   options={({ route }) => ({
-    headerShown: false // Cacher le header par défaut
+    headerShown: false 
   })}
 />
 
     <Stack.Screen name="MatchJoue" component={MatchJoue} options={({ route })  => ({
+      headerShown: false
+    })} />
+    <Stack.Screen name="StatistiqueDetail" component={StatistiqueDetail} options={({ route })  => ({
       headerShown: false
     })} />
   </Stack.Navigator>

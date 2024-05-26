@@ -64,7 +64,7 @@ const Matchs = ({ navigation }) => {
               >
               <Pressable
               onPress={() =>
-               console.log("Match joue : ", item.id_match, joueur)
+               navigation.navigate('StatistiqueDetail', { id_joueur: joueur, id_match: item.id_match })
               }
             >
                 <Match
