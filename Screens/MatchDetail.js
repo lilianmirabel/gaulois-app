@@ -54,29 +54,24 @@ const MatchDetail = ({ navigation }) => {
     return <Text>Chargement des données en cours</Text>;
   }
 
-  // Détermine le titre en fonction des points des Gaulois
+  
   const title = matchData.point_gaulois > matchData.point_adverse ? "Victoire" : "Defaite";
-  // Détermine la couleur de fond en fonction du résultat du match
+ 
   const viewColor = matchData.point_gaulois > matchData.point_adverse ? "#2ECC71" : "#EF233C";
 
-  // Détermine la source du logo de l'équipe adverse et Gaulois en fonction du résultat du match
   const logoAdverse = matchData.point_gaulois > matchData.point_adverse ? matchData.logo_equipe : require('../assets/images/gaulois-lg.png');
   const logoGaulois = matchData.point_gaulois > matchData.point_adverse ? require('../assets/images/gaulois-lg.png') : matchData.logo_equipe;
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Header avec la couleur de fond et le texte */}
+    
       <Header title={title} textColor="black" viewColor={viewColor} />
-      {/* Vue avec la couleur de fond de l'header et le score au milieu */}
       <View style={[styles.headerView, { backgroundColor: viewColor }]}>
-        <View style={styles.scoreContainer}>
-          {/* Logo équipe Gaulois */}
+        <View style={styles.scoreContainer}>     
           <View style={styles.teamLogo}>
             <Image source={logoGaulois} style={styles.teamLogoImage} />
           </View>
-          {/* Scores */}
           <Text style={styles.scoreText}>{matchData.point_gaulois} - {matchData.point_adverse}</Text>
-          {/* Logo équipe adverse */}
           <View style={styles.teamLogo}>
             <Image source={logoAdverse} style={styles.teamLogoImage} />
           </View>

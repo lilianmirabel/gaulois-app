@@ -68,6 +68,9 @@ const StatistiqueDetail = ({ navigation }) => {
         {cumule.interceptions != null && (
           <Text style={styles.cumuleText}>Interceptions: {cumule.interceptions}</Text>
         )}
+        {cumule.interception != null && (
+          <Text style={styles.cumuleText}>Interception: {cumule.interception}</Text>
+        )}
         {cumule.nb_courses != null && (
           <Text style={styles.cumuleText}>Nombre de courses: {cumule.nb_courses}</Text>
         )}
@@ -80,8 +83,22 @@ const StatistiqueDetail = ({ navigation }) => {
         {cumule.nb_receptions != null && (
           <Text style={styles.cumuleText}>Réceptions: {cumule.nb_receptions}</Text>
         )}
+        {cumule.plaquage != null && (
+          <Text style={styles.cumuleText}>Plaquage: {cumule.plaquage}</Text>
+        )}
+        {cumule.plaquage_assiste != null && (
+          <Text style={styles.cumuleText}>Plaquage assiste: {cumule.plaquage_assiste}</Text>
+        )}
+        {cumule.total_plaque != null && (
+          <Text style={styles.cumuleText}>Total plaquage: {cumule.total_plaque}</Text>
+        )}
+        {cumule.plaque_perte != null && (
+          <Text style={styles.cumuleText}>Plaquage perte: {cumule.plaque_perte}</Text>
+        )}
+        {cumule.sac != null && (
+          <Text style={styles.cumuleText}>Sac: {cumule.sac}</Text>
+        )}
        
-        
       
       </View>
     );

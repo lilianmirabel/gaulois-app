@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "gaulois-app",
+    "name": "Gaulois",
     "slug": "gaulois-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "plugins": [
       [
         "expo-font",
@@ -24,16 +26,25 @@
       ]
     ],
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/gaulois-lg.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.lilian_mrbl.gauloisapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fb94d905-7a6b-48b8-9359-24247ee6c53f"
+      }
+    },
+    "owner": "lilian_mrbl"
   }
 }
